@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+table, th, td {
+    border: 1px solid #265b4e;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+table {
+    border-radius: 0.25em !important;
+    border-collapse: collapse;
+    margin: 1em;
+}
+
+th {
+    font-weight: 600;
+    text-align: left;
+}
+
+td {
+    font-weight: 400;
+    padding: 0.65em 1em;
+}
+
+tbody tr {
+    transition: background 0.25s ease;
+}
+
+    tbody tr:hover {
+        background: #c9dbd4;
+    }
