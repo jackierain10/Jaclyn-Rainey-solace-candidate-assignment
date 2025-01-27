@@ -21,4 +21,4 @@ const setup = () => {
     }
 };
 
-export default setup();
+export default db;
