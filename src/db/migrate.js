@@ -8,8 +8,15 @@ const runMigration = async () => {
   console.log(process.env.DATABASE_URL);
 
   const sql = postgres(process.env.DATABASE_URL, { max: 1 });
-  const db = drizzle(sql);
-  await migrate(db, { migrationsFolder: "drizzle" });
+    const db = drizzle(sql);
+    try {
+        await migrate(db, { migrationsFolder: "drizzle" });
+    } catch (error) {
+        console.error("failed to migrate: ", error)
+    } finally {
+        await sql.end();
+    }
+
   await sql.end();
 };
 
@@ -20,8 +27,6 @@ runMigration()
     process.exit(0);
   })
   .catch((e) => {
-    console.error("Failed to run migration.");
-    console.error(e);
-
+    console.error("Failed to run migration.", e);
     process.exit(1);
   });
