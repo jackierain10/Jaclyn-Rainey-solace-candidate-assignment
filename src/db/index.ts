@@ -11,10 +11,14 @@ const setup = () => {
     };
   }
 
-  // for query purposes
-  const queryClient = postgres(process.env.DATABASE_URL);
-  const db = drizzle(queryClient);
-  return db;
+    // for query purposes
+    try {
+        const queryClient = postgres(process.env.DATABASE_URL);
+        const db = drizzle(queryClient);
+        return db;
+    } catch (error) {
+        throw error;
+    }
 };
 
-export default setup();
+export default db;
